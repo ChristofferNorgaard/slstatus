@@ -68,10 +68,10 @@ static const struct arg args[] = {
 	//{ datetime, "%s",           "%F %T" },
 	//{ wifi_perc, "W: (%3s%% on ", "wlp8s0" },
         { netspeed_rx, "%sB/s  ", "enp4s0" },
-	{ run_command, "󰕾: %4s ", "amixer sget PCM | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+	{ run_command, "󰕾: %4s%% ", "amixer -D pulse sget Master | grep -oE '[0-9]+%' | cut -d'%' -f1 | awk '{sum += $1} END {print sum/NR}'" },
 	{ keymap, "%s |", NULL},
 	{ cpu_perc, "[CPU 󰻠 %s%%]   ", NULL	      },
-	{ run_command, "[GPU 󰢮 %s]   ", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader" },
+	{ run_command, "[GPU 󰢮 %s]   ", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader"},
 	{ ram_perc, "[RAM 󰍛 %s%%]   ", NULL	      },
 	
 	{ datetime, "%s",           "%a %b %d %r" },
